@@ -5,7 +5,7 @@
 
 import re
 
-def ReadFile2(filename):
+def ReadFile(filename):
     with open(filename,"r", encoding="utf8") as myfile:
         text = myfile.read()
     return text
@@ -28,9 +28,6 @@ def ParseEmail(text):
 
 
 if __name__ == '__main__':
-    text=ReadFile2('email.txt')
+    text=ReadFile('email.txt')
     listemail=ParseEmail(text)
     WriteFile(listemail,'emailparse.txt')
-
-
-
