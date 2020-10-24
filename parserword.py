@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     dict=dictwordRepetitionСounting(listWordsFromDocument(filename))
 
-    WriteFile(numbercWordinFile(filename),dict,'res.txt')
+    WriteFile(numbercWordinFile(filename),dict,'parseword.txt')
 
 
 

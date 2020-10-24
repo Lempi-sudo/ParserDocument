@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     dictletter=dictwordRepetitionСounting(listletter)
 
-    WriteFile(dictletter,'res2.txt')
+    WriteFile(dictletter,'parseletter.txt')
 
 
 
