@@ -15,20 +15,16 @@ def ParseNumberPhone(text):
     allresulr = re.findall(textlookfor, text)
     return allresulr
 
-def WriteFile(listemail , filename ):
+def WriteFile(listphone , filename ):
     with open(filename,'w', encoding="utf8") as file:
         file.write('номера телефонов : \n')
-        n=0
-        for email in listemail:
-            file.write(email+' ; ')
-            n+=1
-            if n%5==0:
-                file.write('\n')
+        for i in range(len(listphone)):
+            file.write(listphone[i] + "\n")
 
 
 
 if __name__ == '__main__':
-    text = ReadFile('numberphonedoc.txt')
+    text = ReadFile('text.txt')
     listphone = ParseNumberPhone(text)
     WriteFile(listphone, 'parsephonenumber.txt')
 

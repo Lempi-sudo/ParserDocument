@@ -2,53 +2,19 @@
 #Реализовать программу, считывающую текст из этого документа,
 # подсчитывающую количество слов в нём
 # и сохраняющую в выходной файл N (задаётся пользователем) наиболее часто встречаемых слов.
+import re
 
+def ReadText(filename):
+    with open(filename ,mode='r' , encoding="utf8") as file:
+        text=file.read()
+    return text
 
+def parseword(text):
+    lookfor = r"[а-яА-Я]+"
+    allres = re.findall(lookfor, text)
+    return allres
 
-
-
-def listWordsFromDocument(filename):
-    string = readFile(filename)
-    spl_str = splitStrings(string)
-    worlds = listworld(spl_str)
-    return worlds
-
-
-def readFile( filename ):
-    with open(filename,"r", encoding="utf8") as myfile:
-        strings = myfile.readlines()
-    stringWithoutPunctuationSumbol=deletePunctuationSumbol(strings)
-    return stringWithoutPunctuationSumbol
-
-def deletePunctuationSumbol(str):
-    for i in range(len(str)):
-        str[i] = str[i].replace(':','')
-        str[i] = str[i].replace(',', '')
-        str[i] = str[i].replace('.', '')
-        str[i] = str[i].replace('!', '')
-        str[i] = str[i].replace('?', '')
-        str[i] = str[i].replace('&', '')
-        str[i] = str[i].replace('"', '')
-        str[i] = str[i].replace(';', '')
-        str[i] = str[i].replace('(', '')
-        str[i] = str[i].replace(')', '')
-        str[i]=str[i].replace('-', ' ')
-        str[i] = str[i].replace('—', ' ')
-    return str
-
-def splitStrings(strings):
-    split_string = []
-    for st in strings:
-        split_string.append(st.split())
-    return split_string
-
-def numbercWordinFile(filename):
-    listworld = listWordsFromDocument(filename)
-    number = len(listworld)
-    return number
-
-
-def dictwordRepetitionСounting(worldlist):
+def dictwordrepit(worldlist):
     repitworld = {}
     for world in worldlist:
         if world not in repitworld:
@@ -57,35 +23,29 @@ def dictwordRepetitionСounting(worldlist):
             repitworld[world] += 1
     return repitworld
 
-#возвращает список слов
-def listworld(text):
-    listWord = []
-    for string in text:
-        for world in string:
-            listWord.append(world)
-    return listWord
 
-def WriteFile( amoutworld , listrepitworld , filename ):
+def WriteFile(amountworld, listrepitworld, filename ):
     with open(filename,'w', encoding="utf8") as file:
-        file.write('количество слов в файле='+str(amoutworld)+'\n')
-        file.write('Самые часто встречающиеся слова в файле\n')
-        sort_list=sorted(listrepitworld.items(), key=lambda k:k[1] , reverse=True)
+        file.write('количество слов в файле='+str(amountworld)+'\n')
+        file.write('Самые часто встречающиеся слова в файле(ТОП 30) \n')
+        sort_list = sorted(listrepitworld.items(), key=lambda k: k[1], reverse=True)
         file.write('слово\t количество слов\t\n')
+        n = 1
         for para in sort_list:
-            file.write(para[0]+'=' +str(para[1])+'\n')
-
-
-
-
+            if n % 31 == 0:
+                break
+            file.write(para[0]+'=' + str(para[1])+'\n')
+            n += 1
 
 
 if __name__ == '__main__':
-
-    filename=input('enter file name:')
-
-    dict=dictwordRepetitionСounting(listWordsFromDocument(filename))
-
-    WriteFile(numbercWordinFile(filename),dict,'parseword.txt')
+    filenameinput=input("enter file path to read  for example(text.txt):")
+    text=ReadText(filenameinput)
+    allres=parseword(text)
+    dict=dictwordrepit(allres)
+    print(dict)
+    filenameoutput = input("enter file path to write:")
+    WriteFile(len(allres),dict, filenameoutput )
 
 
 

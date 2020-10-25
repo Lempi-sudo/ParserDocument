@@ -13,12 +13,8 @@ def ReadFile(filename):
 def WriteFile(listemail , filename ):
     with open(filename,'w', encoding="utf8") as file:
         file.write('домены электронной почты : \n')
-        n=0
         for email in listemail:
-            file.write(email+' ; ')
-            n+=1
-            if n%5==0:
-                file.write('\n')
+            file.write(email+'\n')
 
 
 def ParseEmail(text):
@@ -28,6 +24,6 @@ def ParseEmail(text):
 
 
 if __name__ == '__main__':
-    text=ReadFile('email.txt')
+    text=ReadFile('text.txt')
     listemail=ParseEmail(text)
     WriteFile(listemail,'emailparse.txt')
