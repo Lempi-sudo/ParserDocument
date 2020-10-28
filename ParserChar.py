@@ -52,18 +52,3 @@ if __name__ == '__main__':
     listchar=listChar(listwordlow)
     dictchar=dictCharRepit(listchar)
     WriteFile(dictchar,'char.txt')
-
-
-
-    #listwords = listWordsFromDocument('text.txt')
-    #listwords=lowRegist(listwords)
-
-    #listchar = listChar(listwords)
-    #listletter=onlyLetter(listchar)
-
-    #dictletter=dictwordRepetitionСounting(listletter)
-
-    #WriteFile(dictletter,'parseletter.txt')
-
-
-
