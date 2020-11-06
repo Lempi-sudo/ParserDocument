@@ -1,0 +1,5 @@
+*.txt
+!text.txt
+.idea/
+__*
+venv/
